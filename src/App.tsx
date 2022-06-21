@@ -1,50 +1,39 @@
-import React, {useState} from "react";
-import {Tasks} from "./02/components/Tasks";
-import {Input} from "./02/components/Input";
-import {Button} from "./02/components/Button";
+import React from 'react';
+import './App.css';
+import {Site} from "./Site";
 
-export type TaskType = {
-    id: number
-    title: string
+export type ArrObjType = {
+    header: string
+    body: string
+    footer: string
+}
+type CarType = {
+    manufacturer: string
+    model: string
 }
 
-let counter = 4;
+export type CarsType = Array<CarType>
 
-const App = () => {
-    const [tasksArr, setTasksArr] = useState<Array<TaskType>>([
-        {id: 1, title: 'Task1'},
-        {id: 2, title: 'Task2'},
-        {id: 3, title: 'Task3'},
-    ])
 
-    const counterID = () => {
-        return counter++;
-    }
+const arr: Array<ArrObjType> = [{
+    header: 'Header',
+    body: 'Body',
+    footer: 'footer'
+}];
 
-    const [word, setWord] = useState<string>('');
+const topCars: CarsType = [
+    {manufacturer:'BMW', model:'m5cs'},
+    {manufacturer:'Mercedes', model:'e63s'},
+    {manufacturer:'Audi', model:'rs6'}
+]
 
-    const addWord = (word: string) => {
-        setWord(word);
-    }
 
-    const addTask = () => {
-        setTasksArr([{id: counterID(), title: word}, ...tasksArr]);
-        setWord('');
-    }
-
-    const deleteTask = (id: number) => {
-        setTasksArr(tasksArr.filter(item => item.id !== id))
-    }
-
-    return (
-        <>
-            <div>
-                <Input value={word} callback={addWord}/>
-                <Button title={'add'} callback={addTask}/>
-            </div>
-            <Tasks taskArr={tasksArr} callback={deleteTask}/>
-        </>
-    )
+function App() {
+  return (
+    <div className="App">
+      <Site info={arr[0]} cars={topCars}/>
+    </div>
+  );
 }
 
-export default App
+export default App;
