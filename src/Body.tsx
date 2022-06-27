@@ -4,19 +4,22 @@ import {CarsType} from "./App";
 import {Button} from "./Button";
 import {Counter} from "./Counter";
 import {Banknotes} from "./Banknotes";
+import {InputFull} from "./components/Input/InputFull";
 
 type BodyPropsType = {
     infoBody: CarsType
 }
-
 type BanknoteType = {
     banknotes: string
     value: number
     number: string
 }
-
+type toDoListType = {
+    id: string
+    value: string
+}
+export type toDoListArrType = Array<toDoListType>
 export type MoneyArr = Array<BanknoteType>
-
 export type ButtonType = {
     id: string
     title: string
@@ -37,6 +40,11 @@ const moneyArr: MoneyArr = [
     { banknotes: 'Dollars', value: 50, number: ' x1234567890' },
     { banknotes: 'Rub', value: 50, number: ' v1234567890' },
 ];
+const toDoListArr: toDoListArrType = [
+    {id: '123', value: 'HTML'},
+    {id: '1234', value: 'CSS'},
+    {id: '12345', value: 'JS'}
+]
 
 
 export const Body = (props: BodyPropsType) => {
@@ -44,7 +52,6 @@ export const Body = (props: BodyPropsType) => {
     const doAnything = () => {
         console.log('Hello')
     }
-
     let [a, setA] = useState<any>('clickOnMe');
 
     const increment = () => {
@@ -80,6 +87,7 @@ export const Body = (props: BodyPropsType) => {
             <Button data={buttonArr[0]} callBack={doAnything} />
             <Counter startNum={a} callbackIn={increment} callbackNull={setNull}/>
             <Banknotes data={moneyArr}/>
+            <InputFull data={toDoListArr}/>
         </div>
     )
 }
